@@ -1,0 +1,159 @@
+<title><%= title %></title>
+  <!-- Navbar -->
+<div id="navBar" class="w3-top">
+  <div class="w3-bar w3-teal w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="navBarFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="/"><button type="submit" class="w3-ripple btn-link w3-bar-item w3-button w3-padding-large w3-black">Home</button></a>
+    <a href="/Contacts"><button type="submit" class="btn-link w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-black">Contact</button></a>
+    <a href="/aboutus"><button type="submit" class="btn-link w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-black">About Us</button></a>
+    <a href="/users/departments"><button type="submit" class="btn-link w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-black">Departments</button></a>
+    <a href="/admins/dev_chats"><button type="submit" class="btn-link w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-black">Dev Chats</button></a>
+    <a href="/users/departments"><button type="submit" class="get-started-button btn-link w3-blue w3-text-black w3-button w3-btn w3-padding-small w3-margin-top w3-margin-right w3-hover-black w3-right w3-ripple">Login</button></form>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="/Contacts"><button type="submit" class="btn-link 3-bar-item w3-button w3-padding-large w3-hover-text-teal">Contact</button></a>
+    <a href="/aboutus"><button type="submit" class="btn-link 3-bar-item w3-button w3-padding-large w3-hover-text-teal">About Us</button></a>
+    <a href="/users/departments"><button type="submit" class="btn-link 3-bar-item w3-button w3-padding-large w3-hover-text-teal">Departments</button></a>
+    <a href="/admins"><button type="submit" class="btn-link 3-bar-item w3-button w3-padding-large w3-hover-text-teal">Dev Chats</button></a>
+  </div>
+</div>
+
+<!-- slide show -->
+<header class="w3-card w3-container w3-center" style="padding:51px 0px 0px 0px; display: none;"></header>
+
+  <!-- Full-width video -->
+  <div id="imgDiv" class="imgDiv fade">
+    <img id="content-auto" src="/images/indexslidevid1.gif">
+  </div>
+
+  <div class="imgDiv fade">
+    <img id="content-auto" src="/images/indexslide1.jpg">
+  </div>
+
+  <div class="imgDiv fade">
+    <img id="content-auto" src="/images/indexslide2.jpg">
+  </div>
+
+  <div class="imgDiv fade">
+    <img id="content-auto" src="/images/indexslide3.jpg">
+  </div>
+  <div class="imgDiv fade">
+    <img id="content-auto" src="/images/indexslide4.jpg">
+  </div>
+  <div class="imgDiv fade">
+    <img id="content-auto" src="/images/indexslide5.jpg">
+  </div>
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+  <!-- The dots/circles -->
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+    <span class="dot" onclick="currentSlide(5)"></span>
+    <span class="dot" onclick="currentSlide(6)"></span>
+  </div>
+
+</header>
+<!-- end of slider -->
+
+
+<!-- First Grid -->
+<div class="w3-card w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>Here to empower your inner <span class="w3-text-red w3-hover-text-black">CODER</span></h1>
+      <h5 class="w3-padding-32">Welcome to the chatting site of the future. Send text messages as quick as a bunny on planet earth and aliens :). Send in any part of the world</h5>
+
+      <p class="w3-text-grey">
+        COMING SOON
+      </p>
+    </div>
+
+    <div class="w3-third w3-center">
+      <img class="hover-front-index" src="/images/gymmainpage.jpg" alt="arms">
+    </div>
+  </div>
+</div>
+
+<!-- Second Grid -->
+<div class="w3-card-4 w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-third w3-center ">
+      <img height="225px" width="225px" class="w3-margin-right hover-front-index" src="/images/userlogo3.gif" alt="user image">
+    </div>
+
+    <div class="w3-twothird">
+      <h1>WANT A USER ACCOUNT</h1>
+      <h5 class="w3-padding-32">YOU WANT TO TAKE YOUR SKILLS TO THE NEXT LEVEL?</h5>
+      <!-- TODO: implement an end point for the form -->
+      <p class="w3-text-grey">REGISTER TODAY </p><a href="/users/departments" class="w3-display w3-ripple btn-register w3-btn w3-button w3-black">Click Here</a>
+    </div>
+  </div>
+</div>
+
+<div class="w3-card w3-container w3-black w3-center w3-opacity w3-padding-64">
+    <!-- text "quoteSeq" is send by server to display everytime the page reloads, could be upgraded to be everyday -->
+    <h1 class="w3-margin w3-xlarge">Quote of the day: <%= quoteSeq %></h1>
+</div>
+
+<script>
+
+  var slideIndex = 1;
+  showSlides(slideIndex);
+  timeout1()
+
+  function timeout1() {
+    setTimeout(() => {
+    plusSlides(1);
+    timeout2()
+    userWidthCopy = document.documentElement.clientWidth;
+    userHeightCopy = document.documentElement.clientHeight;
+    
+    }, 7000);
+  }
+
+  function timeout2() {
+    setTimeout(() => {
+    plusSlides(1);
+    timeout1()
+    userWidthCopy = document.documentElement.clientWidth;
+    userHeightCopy = document.documentElement.clientHeight;
+
+    }, 7000);
+  }
+
+  // Next/previous controls
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  // Thumbnail image controls
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("imgDiv");
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+  }
+
+  
+</script>

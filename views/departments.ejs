@@ -1,0 +1,171 @@
+<!-- this "title" query string will be sent when renderring this page in index.js -->
+<title><%= title %></title>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-teal w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="/users/departments"><button type="submit" class="btn-link w3-bar-item w3-button w3-padding-large w3-black">Departments</button></a>
+    <a href="#"><button type="submit" class="btn-link w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-black">Home</button></a>
+    <a href="/Contacts"><button type="submit" class="btn-link w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-black">Contact</button></a>
+    <a href="/aboutus"><button type="submit" class="btn-link w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-black">About Us</button></a>
+  </div>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top w3-card-4" style="z-index:3;width:250px" id="Sidebar">
+  <div class="w3-container w3-display-container w3-padding-16">
+    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+    <h3 class="w3-wide"><b>DEPARTMENTS</b></h3>
+  </div>
+  <div class="setting-div w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+    <a onclick="renderView('display-section-webdev')" class="w3-bar-item w3-button">Web Development</a>
+    <a onclick="renderView('display-section-design')" class="w3-bar-item w3-button">Design</a>
+    <a onclick="AccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="BtnToOpen">
+      Programming <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="Acc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a id="node" onclick="renderView('display-section-node')" class="w3-bar-item w3-button">Node.js</a>
+      <a id="py" onclick="renderView('display-section-python')" class="w3-bar-item w3-button">Python</a>
+      <a id="java" onclick="renderView('display-section-java')" class="w3-bar-item w3-button">Java</a>
+      <a id="go" onclick="renderView('display-section-go')" class="w3-bar-item w3-button">Golang</a>
+    </div>
+    <a onclick="renderView('display-section-msos')" class="w3-bar-item w3-button">MS OS</a>
+    <a onclick="renderView('display-section-ide')" class="w3-bar-item w3-button">IDE's</a>
+    <a onclick="renderView('display-section-content-creation')" class="w3-bar-item w3-button">Content Creation (Coming soon)</a>
+    <a onclick="renderView('display-section-others')" class="w3-bar-item w3-button">Others</a>
+  </div>
+  <a href="/" class="w3-bar-item w3-button w3-padding">Home</a> 
+  <!-- implemented as a post request, if any method is use to send requests like ajax, please use post for this button -->
+  <form method="POST" action="/users/LOGOUT"><button type="submit" class="w3-bar-item w3-button w3-padding w3-text-red">LOGOUT</button></form>
+  <a id="settings" onclick="renderView('display-section-settings')" class="w3-bar-item w3-button w3-padding">Account Settings</a>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+  <div class="w3-bar-item w3-padding-24 w3-wide">DEPARTMENTS</div>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="Overlay"></div>
+
+<!-- END OF SIDEBAR -->
+
+
+<!-- ARTICLES SECTION -->
+<!-- ALL DIVS MUST TAKE THIS TEMPLATE STYLE TO FUNCTION ?>>? DIV PARENT WITH A AN ID THAT SHOULD BE PASSED TO RENDERVIEW() AT ONCLICK, AN EJS SYNTAX OF IMPORT OF A .EJS FILE WHICH SHOULD BE STORED IN THE ARTICLE FOLDER -->
+<!-- IMMEDIATE >>> WE NEED AN ARTICLE WRITER, TO WRITE THE ARTICLES HEAD TO ./VIEWS/PARTIALS/ARTICLE/* -->
+
+<div id="display-section-webdev" class="w3-main w3-hide w3-padding-64" style="margin-left:250px">
+  <!-- web dev article -->
+  <%- include('./partials/articles/webdevArticle.ejs') %>
+  <%- include('./partials/footer') %>
+</div>
+
+<div id="display-section-design" class="w3-main w3-hide w3-padding-64" style="margin-left:250px">
+  <!-- design article -->
+  <%- include('./partials/articles/designArticle.ejs') %>
+  <%- include('./partials/footer') %>
+</div>
+
+<div id="display-section-node" class="w3-main w3-padding-64" style="margin-left:250px">
+  <!-- node js article -->
+  <%- include('./partials/articles/nodejsArticle.ejs') %>
+  <%- include('./partials/footer') %>
+</div>
+
+<div id="display-section-python" class="w3-main w3-hide w3-padding-64" style="margin-left:250px">
+  <!-- python article -->
+  <%- include('./partials/articles/pythonArticle.ejs') %>
+  <%- include('./partials/footer') %>
+</div>
+
+<div id="display-section-settings" class="w3-main w3-hide w3-padding-64" style="margin-left:250px;  background-color:  #f2f2f2;">
+  <!-- setting page -->
+  <%- include('./partials/articles/accountSettings.ejs') %>
+  <%- include('./partials/footer') %>
+
+</div>
+
+<div id="display-section-java" class="w3-main w3-hide w3-padding-64" style="margin-left:250px">
+  <!-- java page -->
+  <%- include('./partials/articles/javaArticle.ejs') %>
+  <%- include('./partials/footer') %>
+</div>
+
+<div id="display-section-go" class="w3-main w3-hide w3-padding-64" style="margin-left:250px">
+  <!-- golang page -->
+  <%- include('./partials/articles/golangArticle.ejs') %>
+  <%- include('./partials/footer') %>
+</div>
+
+<div id="display-section-msos" class="w3-main w3-hide w3-padding-64" style="margin-left:250px">
+  <!-- ms os page -->
+  <%- include('./partials/articles/microsoftArticle.ejs') %>
+  <%- include('./partials/footer') %>
+</div>
+
+<div id="display-section-ide" class="w3-main w3-hide w3-padding-64" style="margin-left:250px">
+  <!-- ide page -->
+  <%- include('./partials/articles/ideArticle.ejs') %>
+  <%- include('./partials/footer') %>
+</div>
+
+<div id="display-section-content-creation" class="w3-main w3-hide w3-padding-64" style="margin-left:250px">
+  <!-- content creator page -->
+  <%- include('./partials/articles/contentArticle.ejs') %>
+  <%- include('./partials/footer') %>
+</div>
+
+<div id="display-section-others" class="w3-main w3-hide w3-padding-64" style="margin-left:250px">
+  <!-- others page -->
+  <%- include('./partials/articles/othersArticle.ejs') %>
+  <%- include('./partials/footer') %>
+</div>
+
+<!-- END OF ARTICLE SECTION -->
+
+<!-- ACCOUNT SETTINGS SECTION -->
+<div id="display-section-change-pass" class="w3-main w3-hide w3-padding-64" style="margin-left:250px; background-color:  #f2f2f2;">
+  <!-- change password section -->
+  <a onclick="renderView('display-section-settings')" href="javascript:void(0);" class="back-arrow w3-ripple w3-margin w3-large w3-padding">&#10094;</a>
+  <%- include('./partials/modals/changePasswordModal.ejs') %>
+</div>
+
+<div id="display-section-change-pic" class="w3-main w3-hide w3-padding-64" style="margin-left: 250px; background-color:  #f2f2f2;">
+  <!-- change picture of user -->
+  <a onclick="renderView('display-section-settings')" href="javascript:void(0);" class="back-arrow w3-ripple w3-margin w3-large w3-padding">&#10094;</a>
+  <%- include('./partials/modals/changePicModal.ejs') %>
+</div>
+
+<div id="display-section-details" class="w3-main w3-hide w3-padding-64" style="margin-left: 250px; background-color:  #f2f2f2;">
+  <!-- change picture of user -->
+  <a onclick="renderView('display-section-settings')" href="javascript:void(0);" class="back-arrow w3-ripple w3-margin w3-large w3-padding">&#10094;</a>
+  <%- include('./partials/modals/seeDetailsModal.ejs') %>
+</div>
+
+<script>
+
+  const personName = document.getElementById('username');
+  const settingsParent = document.getElementById('usernameParent');
+  const data = '<%= userdata %>' != '' ? '<%= userdata %>' : 'User';
+  personName.innerHTML = `Welcome ${data}`;
+  settingsParent.appendChild(personName);
+
+  //decide the default pic to give user and call with an iife
+  let userImageTag = document.getElementById('user-image');
+  (function (){
+    if ('<%= gender %>' !== ''){
+      if ('<%= gender %>' === 'male'){
+        userImageTag.src = '/images/userlogo4.png';
+      }
+      else {
+        userImageTag.src = '/images/userlogo3.png';
+      }
+    }
+
+  })();
+
+</script>
+

@@ -1,0 +1,170 @@
+<title><%= title %></title>
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-teal w3-card w3-left-align w3-large">
+    <a href="/">
+        <button type="submit" class="btn-link w3-bar-item w3-button w3-padding-large w3-black">Home</button>
+    </a>
+  </div>
+</div>
+
+
+
+
+<!-- Header -->
+<header class="w3-container w3-teal w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">
+    <span class="w3-hover-text-white">Sign </span>
+    <span class="w3-hover-text-black"> Up / Login</span>
+    <!-- A TAG TO GO IF USER GETS ERROR FROM SERVER -->
+    <a id="login-ref" href="#login"></a>
+    <a id="signup-ref" href="#signup"></a>
+  </h1>
+</header>
+
+
+
+<div class="w3-margin-bottom">
+  <header class="w3-mobile w3-container  w3-white">
+      <h1 class="w3-left">Create Account</h1>
+      <!-- only display when user on desktop, see style.css -->
+      <h1 id="content-desktop" class="w3-right">Login</h1>
+  </header>
+    <!-- SIGNUP FORM FOR USER -->
+  <div id="signup" class="w3-mobile w3-container w3-half w3-margin-top">
+    
+    <form method="POST" action="/users/LoginOrSignup" class="w3-container w3-card-4">
+      
+      <p>
+      <input name="fullname" placeholder="Enter your Full Name" class="w3-animate-input w3-input" type="text" style="width:90%" required>
+      <label>Full Name*</label></p>
+      <p>
+      <input name="password" class="w3-input w3-animate-input" placeholder="Password" aria-placeholder="Choose a Strong Password" type="password" style="width:90%" required>
+      <label>Password*</label></p>
+
+      <p>
+      <input name="retyped" class="w3-input w3-animate-input" placeholder="Retype Password" aria-placeholder="Re-enter your Password" type="password" style="width:90%" required>
+      <label>Retype Password*</label></p>
+      
+      <p><label>Gender</label></p>
+      <p>
+      <input class="w3-radio" type="radio" name="gender" value="male" aria-required="true" required>
+      <label>Male</label></p>
+      
+      <p>
+      <input class="w3-radio" type="radio" name="gender" value="female" aria-required="true" required>
+      <label>Female</label></p>
+
+      <div class="w3-container w3-border">
+        <p style="text-decoration: underline;">Contact</p>
+        <p>
+        <input name="username" placeholder="Enter your Email" class="w3-animate-input w3-input" type="email" style="width:90%" required>
+        <label>Email*</label></p>
+
+        <p>
+        <input name="phone" placeholder="Enter your Phone" class="w3-animate-input w3-input" type="tel" style="width:90%">
+        <label>Phone Number</label></p>
+      </div>
+      
+      <!-- optional if user wants to stay logged in or we just make an expiry as currently -->
+      <!-- <p>
+      <input id="milk" class="w3-check" type="checkbox" checked="checked">
+      <label>Stay logged in</label></p> -->
+
+      <!-- div for the signup error, hidden by defualt with w3-hide -->
+      <div id="signupErrorDiv" class="w3-right w3-hide" style="margin-top: 3em;">
+        <label id="signupErrorLog" style="color: red; font-weight: normal;"></label>
+      </div>
+      
+      <p>
+      <button type="submit" class="w3-btn w3-button w3-section w3-blue w3-ripple"> Sign up </button></p>
+      
+    </form>
+
+  </div>
+
+  <header id="content-mobile" class="w3-mobile w3-container  w3-white">
+    <h1 class="w3-mobile w3-margin-top">Login</h1>
+  </header>
+
+    <!-- Login Form -->
+  <div id="login" class="w3-mobile w3-container w3-half w3-margin-top">
+    <form action="/users/LoginOrSignup" method="POST" class="w3-container w3-card-4">
+        
+      <p>
+        <label><i class="fa fa-user-o"></i> Username</label>
+      </p>
+      <input id="username" name="username" placeholder="Username -Your email" class="w3-animate-input w3-input" type="text" style="width:90%" required>
+
+      <p>
+        <label><i class="fa fa-key"></i> Password</label>
+      </p>
+      <input id="password" name="password" class="w3-input w3-animate-input" placeholder="Your Password" aria-placeholder="Choose a Strong Password" type="password" style="width:90%" required>
+
+      <!-- div for the log error, hidden by defualt with w3-hide -->
+      <div id="loginErrorDiv" class="w3-right w3-hide" style="margin-top: 3em;">
+        <label id="loginErrorLog" style="color: red; font-weight: normal;"></label>
+      </div>
+      <p>
+        <button id="loginBtn" type="submit" class="get-started-button w3-btn w3-button w3-section w3-blue w3-ripple"> Login </button>
+      </p>
+        
+    </form>
+  </div>
+
+</div>
+
+
+<script>
+  "use strict"
+
+  /* CONSTANTS */
+  //login
+  var divToShowLogin = document.getElementById('loginErrorDiv');
+  const serverLoginErrorMessage = '<%= serverLoginErrorMessage %>';
+  const loginErrorLabel = document.getElementById('loginErrorLog');
+  //signup
+  var divToShowSignup = document.getElementById('signupErrorDiv');
+  const serverSignupErrorMessage = '<%= serverSignupErrorMessage %>';
+  const signupErrorLabel = document.getElementById('signupErrorLog');
+  
+  
+    
+  /* CONDITIONALS */
+  //to display the login error message
+  if (serverLoginErrorMessage != '') {
+    if (divToShowLogin.className.indexOf('w3-show') == -1) {
+        //if there is an error message show the div with the massage else don't
+        loginErrorLabel.innerHTML = serverLoginErrorMessage;
+        divToShowLogin.appendChild = loginErrorLabel;
+        divToShowLogin.className = divToShowLogin.className.replace(' w3-hide', ' w3-show'); 
+        document.getElementById("login-ref").click(); 
+    }else{
+        divToShowLogin.className = divToShowLogin.className.replace(' w3-show', ' w3-hide');
+    }
+  }else{
+      loginErrorLabel.innerHTML = '';
+      divToShowLogin.appendChild = loginErrorLabel;
+
+  }
+
+  //to display the signup error message
+  if (serverSignupErrorMessage != ''){
+      if (divToShowSignup.className.indexOf('w3-show') == -1){
+          //if there is an error message show the div with the massage else don't
+          signupErrorLabel.innerHTML = serverSignupErrorMessage;
+          divToShowSignup.appendChild = signupErrorLabel;
+          divToShowSignup.className = divToShowSignup.className.replace(' w3-hide', ' w3-show');
+          document.getElementById("signup-ref").click();
+      }else{
+          divToShowSignup.className = divToShowSignup.className.replace(' w3-show', ' w3-hide');
+      }
+  }else{
+    signupErrorLabel.innerHTML = '';
+    divToShowSignup.appendChild = signupErrorLabel;
+  }
+
+  //END OF MESSAGE LOG
+  
+</script>
+ 

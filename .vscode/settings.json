@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.deploySubpath": ".",
+    "appService.defaultWebAppToDeploy": "/subscriptions/b1a9b32a-c4eb-4d6c-bea9-0a2b5e990554/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/hackgambia"
+}

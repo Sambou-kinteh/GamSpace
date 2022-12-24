@@ -1,0 +1,134 @@
+<title>Login / Signup</title>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-teal w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="/"><button type="submit" class="btn-link w3-bar-item w3-button w3-padding-large w3-black">Home</button></a>
+  </div>
+</div>
+
+
+ 
+
+
+<!-- First Grid -->
+<div class="w3-mobile w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-mobile w3-content w3-card-4">
+
+    <div class="w3-display-center w3-padding w3-col l6 m8 w3-margin-top" style="align-self: center;">
+      <div class="w3-card-4 w3-mobile w3-container w3-white w3-padding-16">
+        <div class="w3-row-padding" style="margin:0 -16px;">
+          <h4 class="" style="text-align: center; font-style: bold;">Admin Login</h4>
+
+          <form method="POST" action="/admins/Login">
+
+            <div class="w3-half">
+              <label><i class="fa fa-user-o"></i> Username</label>
+              <input name="username" class="w3-input w3-border" type="text" placeholder="username" required>
+            </div>
+            <div class="w3-half">
+              <label><i class=""></i> Password</label>
+              <input name="password" class="w3-input w3-border" type="password" placeholder="password" required>
+            </div>
+            <div class="w3-half">
+              <button type="submit" class="w3-btn w3-button w3-red w3-round w3-margin">Login</button>
+            </div>
+            <div id="loginErrorDiv" class="w3-half w3-margin-top w3-hide">
+              <label id="loginErrorLog" style="font-weight: normal; color: red;"></label>
+            </div>
+
+          </form>
+        </div>
+
+
+        
+        <div class="w3-row-padding w3-border" style="margin:8px -16px;">
+          <form method="POST" action="/admins/Signup">
+            <h4 class="" style="text-align: center; font-style: bold;">Create an admin Account</h4>
+
+            <div class="w3-half">
+              <label><i class="fa fa-user-o"></i> Username</label>
+              <input name="username" class="w3-input w3-border" type="text" placeholder="username" required>
+            </div>
+
+            <div class="w3-half">
+              <label><i class=""></i> Password</label>
+            <input name="password" class="w3-input w3-border" type="password" placeholder="Enter password"  id = "firstPass" required>
+            </div>
+
+            <div class="w3-half w3-margin-top">
+              <label><i class=""></i> Re-type Password</label>
+            <input name="retyped" class="w3-input w3-border" type="password" placeholder="Re-enter password" id = "secondPass" required>
+            </div>
+
+            <div class="w3-half w3-margin-top" style="margin-top: 0cm;">
+              <label><i class="fa fa-child"></i> API Key</label>
+              <input name="APIKEY_GIVEN" class="w3-input w3-border" type="password" placeholder="Enter System API key" required>
+            </div>
+            
+            <div id="signupErrorDiv" class="w3-half w3-margin-top w3-hide">
+              <label type="text" id="signupErrorLog" style="font-weight: normal;" readonly></label>
+            </div>
+            
+            
+            <button type="submit" class="w3-btn w3-button w3-teal w3-round w3-margin">Sign up</button> 
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  
+  /* CONSTANTS */
+  //login
+  var divToShowLogin = document.getElementById('loginErrorDiv');
+  var serverLoginErrorMessage = "<%= serverLoginErrorMessage %>";
+  const loginErrorLabel = document.getElementById('loginErrorLog');
+  //signup
+  var divToShowSignup = document.getElementById('signupErrorDiv');
+  var serverSignupErrorMessage = '<%= serverSignupErrorMessage %>';
+  const signupErrorLabel = document.getElementById('signupErrorLog');
+  
+  
+    
+  /* CONDITIONALS */
+  //to display the login error message
+  if (serverLoginErrorMessage != undefined) {
+    if (divToShowLogin.className.indexOf('w3-show') == -1) {
+        //if there is an error message show the div with the massage else don't
+        loginErrorLabel.innerHTML = serverLoginErrorMessage;
+        divToShowLogin.appendChild = loginErrorLabel;
+        divToShowLogin.className = divToShowLogin.className.replace(" w3-hide", " w3-show");  
+    }else{
+        divToShowLogin.className = divToShowLogin.className.replace(" w3-show", " w3-hide");
+    }
+  }else{
+      loginErrorLabel.innerHTML = '';
+      divToShowLogin.appendChild = loginErrorLabel;
+
+  }
+
+  //to display the signup error message
+  if (serverSignupErrorMessage != undefined){
+      if (divToShowSignup.className.indexOf('w3-show') == -1){
+          //if there is an error message show the div with the massage else don't
+          signupErrorLabel.innerHTML = serverSignupErrorMessage;
+          divToShowSignup.appendChild = signupErrorLabel;
+          divToShowSignup.className = divToShowSignup.className.replace(' w3-hide', ' w3-show');
+      }else{
+          divToShowSignup.className = divToShowSignup.className.replace(' w3-show', ' w3-hide');
+      }
+  }else{
+    signupErrorLabel.innerHTML = '';
+    divToShowSignup.appendChild = signupErrorLabel;
+  }
+
+  //END OF MESSAGE LOG
+
+</script>
+
+
